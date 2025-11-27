@@ -151,22 +151,30 @@ Example: update a score using cURL (PowerShell compatible):
 curl -X POST http://localhost:3000/score -H "Content-Type: application/json" -d '{ "userId": "user9", "value": 200 }'
 ```
 
-Notes and troubleshooting
 
-- If Redis is unreachable (e.g. `ECONNRESET`), the server still computes rank from MongoDB and emits the correct `rank` to WebSocket clients. Redis writes are background best-effort operations and read operations fall back to the DB when needed.
-- You may see Redis reconnect logs like `🔄 Reconnecting to Redis...` or `❌ Redis Error: read ECONNRESET` — this is an indication the client lost a connection; the server will continue to work using DB fallback.
-- If you need stronger Redis semantics (strictly consistent cache updates), consider wrapping DB+Redis changes in a transaction-like workflow or using optimistic concurrency — note that Redis alone cannot replace the DB as the source-of-truth in this app.
+Test socket client (browser)
+
+You can open `test-socket.html` included in the project to see real-time `score_updated` events in your browser.
+
+Quick steps:
+
+- Option A — Open the file directly (may be blocked by some browsers for Socket.IO):
+
+  1. Open `c:\mini-leaderboard\test-socket.html` in your browser (double-click or `File -> Open`).
+  2. Open DevTools Console to see logs (F12 / Ctrl+Shift+I).
 
 
 
+What you'll see:
 
+- When the page connects it will log the socket id and any `score_updated` events emitted by the server.
+- When you POST to `/score` (or update a score from another client), the page will receive and display the `score_updated` payload in real time.
 
-Recommended improvements (future)
+If you do not see updates:
 
-- Add graceful shutdown handlers to close Redis and MongoDB connections on exit (SIGINT/SIGTERM).
-- Add logging via a structured logger (winston or pino) and optional request tracing.
-- Add rate-limits and authentication for the `POST /score` endpoint to prevent abuse.
-- Add unit/integration tests for ranking logic and Redis fallback behavior.
+- Ensure the server is running (`npm start`) and the `PORT` matches the URL used by `test-socket.html` (default `http://localhost:3000`).
+- Check the browser console for connection errors. If cross-origin or direct-file restrictions occur, use the local HTTP server approach (Option B).
+
 
 License
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Socket.IO Test</h2>
+    <pre id="log"></pre>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+      const log = (msg, data) => {
+        const el = document.getElementById("log");
+        el.textContent += msg + (data ? " " + JSON.stringify(data) : "") + "\n";
+        console.log(msg, data ?? "");
+      };
+
+      const socket = io("http://localhost:3000", {
+        transports: ["websocket"], // force websocket
+      });
+
+      socket.on("connect", () => {
+        log("✅ Connected to WebSocket with id:", socket.id);
+      });
+
+      socket.on("connect_error", (err) => {
+        log("❌ connect_error:", err.message);
+      });
+
+      socket.on("score_updated", (data) => {
+        log("🔥 score_updated received:", data);
+      });
+
+      socket.on("disconnect", (reason) => {
+        log("❌ disconnected:", reason);
+      });
+    </script>
+  </body>
+</html>

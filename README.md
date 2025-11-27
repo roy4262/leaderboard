@@ -58,6 +58,7 @@ flowchart LR
     Redis --> API
 
 ```
+
 Requirements
 
 - Node 18+ (or any modern Node that supports ES modules)
@@ -72,11 +73,12 @@ MONGODB_URI=mongodb://user:pass@host:port/dbname
 REDIS_URL=redis://[:password@]host:port
 PORT=3000
 ```
+
 Clone Repositary
+
 ```bash
 git clone https://github.com/roy4262/leaderboard
 ```
-
 
 Install
 
@@ -151,7 +153,6 @@ Example: update a score using cURL (PowerShell compatible):
 curl -X POST http://localhost:3000/score -H "Content-Type: application/json" -d '{ "userId": "user9", "value": 200 }'
 ```
 
-
 Test socket client (browser)
 
 You can open `test-socket.html` included in the project to see real-time `score_updated` events in your browser.
@@ -163,8 +164,6 @@ Quick steps:
   1. Open `c:\mini-leaderboard\test-socket.html` in your browser (double-click or `File -> Open`).
   2. Open DevTools Console to see logs (F12 / Ctrl+Shift+I).
 
-
-
 What you'll see:
 
 - When the page connects it will log the socket id and any `score_updated` events emitted by the server.
@@ -175,6 +174,29 @@ If you do not see updates:
 - Ensure the server is running (`npm start`) and the `PORT` matches the URL used by `test-socket.html` (default `http://localhost:3000`).
 - Check the browser console for connection errors. If cross-origin or direct-file restrictions occur, use the local HTTP server approach (Option B).
 
+Demo & Screenshots
+
+**Postman API Testing**
+
+Update a user's score via `POST /score`:
+
+![Postman POST /score](./images/postman-post-score.png)
+
+Get the leaderboard via `GET /leaderboard`:
+
+![Postman GET /leaderboard](./images/postman-get-leaderboard.png)
+
+**Real-time WebSocket Updates**
+
+Open `test-socket.html` in your browser to see live `score_updated` events as scores change:
+
+![Socket.IO Test Client](./images/websocket-test-client.png)
+
+**Production Logs**
+
+Server logs showing real-time score updates with correct ranks and WebSocket emissions:
+
+![Server Console Logs](./images/server-logs.png)
 
 License
 

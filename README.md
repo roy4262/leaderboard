@@ -24,7 +24,7 @@ This README explains the project design, environment configuration, how to run i
 - Redis is used as a best-effort cache for leaderboard reads. All Redis updates are non-blocking / best-effort so the server continues to emit correct ranks even if Redis is unavailable or reconnecting.
 - WebSocket events `score_updated` are emitted after DB update with payload `{ userId, score, rank }`.
 
-** Data Flow**
+```Data Flow
 sequenceDiagram
     participant C as Client
     participant A as Express API
@@ -41,8 +41,23 @@ sequenceDiagram
     A->>R: Try get top N
     R-->>A: Cached leaderboard
     A-->>C: Response
+```
 
+```Work-Flow
+flowchart LR
+    Client -->|HTTP /score| API[Express API]
+    Client -->|WS Events| WS[Socket.IO]
 
+    API --> MongoDB[(MongoDB)]
+    API --> Redis[(Redis Cache)]
+
+    MongoDB --> WS
+    API --> WS
+
+    API -->|GET /leaderboard| Redis
+    Redis --> API
+
+```
 Requirements
 
 - Node 18+ (or any modern Node that supports ES modules)
@@ -143,21 +158,7 @@ Notes and troubleshooting
 - If you need stronger Redis semantics (strictly consistent cache updates), consider wrapping DB+Redis changes in a transaction-like workflow or using optimistic concurrency — note that Redis alone cannot replace the DB as the source-of-truth in this app.
 
 
-```Work-Flow
-flowchart LR
-    Client -->|HTTP /score| API[Express API]
-    Client -->|WS Events| WS[Socket.IO]
 
-    API --> MongoDB[(MongoDB)]
-    API --> Redis[(Redis Cache)]
-
-    MongoDB --> WS
-    API --> WS
-
-    API -->|GET /leaderboard| Redis
-    Redis --> API
-
-```
 
 
 Recommended improvements (future)

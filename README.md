@@ -65,6 +65,14 @@ Requirements
 - MongoDB instance (URI in `MONGODB_URI`)
 - Redis instance (URI in `REDIS_URL`) — optional for basic operation, recommended for leaderboard performance
 
+
+Clone Repositary
+
+```bash
+git clone https://github.com/roy4262/leaderboard
+```
+
+
 Environment
 Create a `.env` file in the project root or set these environment variables in your shell:
 
@@ -74,11 +82,7 @@ REDIS_URL=redis://[:password@]host:port
 PORT=3000
 ```
 
-Clone Repositary
 
-```bash
-git clone https://github.com/roy4262/leaderboard
-```
 
 Install
 

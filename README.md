@@ -38,6 +38,11 @@ MONGODB_URI=mongodb://user:pass@host:port/dbname
 REDIS_URL=redis://[:password@]host:port
 PORT=3000
 ```
+Clone Repositary
+```bash
+npm clone https://github.com/roy4262/leaderboard/tree/main
+```
+
 
 Install
 

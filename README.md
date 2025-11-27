@@ -40,7 +40,7 @@ PORT=3000
 ```
 Clone Repositary
 ```bash
-npm clone https://github.com/roy4262/leaderboard
+git clone https://github.com/roy4262/leaderboard
 ```
 
 

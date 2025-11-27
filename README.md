@@ -179,12 +179,12 @@ Demo & Screenshots
 **Postman API Testing**
 
 Update a user's score via `POST /score`:
+C:\mini-leaderboard\Screenshot 2025-11-27 092258.png
 
-![Postman POST /score](./images/postman-post-score.png)
 
 Get the leaderboard via `GET /leaderboard`:
 
-![Postman GET /leaderboard](./images/postman-get-leaderboard.png)
+
 
 **Real-time WebSocket Updates**
 

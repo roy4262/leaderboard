@@ -179,24 +179,29 @@ Demo & Screenshots
 **Postman API Testing**
 
 Update a user's score via `POST /score`:
-C:\mini-leaderboard\Screenshot 2025-11-27 092258.png
+
+<img width="1918" height="1140" alt="Screenshot 2025-11-27 092258" src="https://github.com/user-attachments/assets/7b17d3c8-de4a-4aa3-9c13-735d6e2de0c3" />
+
 
 
 Get the leaderboard via `GET /leaderboard`:
 
+<img width="1893" height="831" alt="Screenshot 2025-11-27 092426" src="https://github.com/user-attachments/assets/403d32f2-5512-4609-9d12-3c51abae3178" />
 
 
 **Real-time WebSocket Updates**
 
 Open `test-socket.html` in your browser to see live `score_updated` events as scores change:
 
-![Socket.IO Test Client](./images/websocket-test-client.png)
+![Socket.IO Test Client](./images/websocket-test-client.png)<img width="923" height="544" alt="Screenshot 2025-11-27 092658" src="https://github.com/user-attachments/assets/986b2099-8dce-4599-aac7-130e124a9c73" />
+
 
 **Production Logs**
 
 Server logs showing real-time score updates with correct ranks and WebSocket emissions:
 
-![Server Console Logs](./images/server-logs.png)
+![Server Console Logs](./images/server-logs.png)<img width="1892" height="1056" alt="Screenshot 2025-11-27 095317" src="https://github.com/user-attachments/assets/1d0d08a2-ed03-4abc-958d-10a64e0d356b" />
+
 
 License
 
